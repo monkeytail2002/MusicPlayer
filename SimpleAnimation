@@ -1,0 +1,51 @@
+/**
+ * Angus MacDonald 15009351
+ * Tutor: Karen MacKay
+ * Music Player (Head First Java)
+ * Version 1 09/11/18
+ */
+
+package musicplayer;
+
+import java.awt.*;
+import javax.swing.*;
+
+public class SimpleAnimation {
+	
+	int x = 70;
+	int y = 70;
+	
+	public void animate()
+	{
+		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //This line makes the program quit as soon as the window frame is closed.
+		
+		MyDrawPanel drawPanel = new MyDrawPanel();  //Calls in the MyDrawPanel class
+		
+		
+		frame.getContentPane().add(drawPanel);  //Adds the widget
+		frame.setSize(300,300);//Gives the window pane a size
+		frame.setVisible(true);//This makes it visible.
+		
+		for (int i = 0;i<130;i++)
+		{
+			
+			/**
+			 * Increments x and y co-ords
+			 */
+			x++;
+			y++;
+			
+			drawPanel.repaint();  //Tells panel to repaint itself
+			
+			try {
+				Thread.sleep(50);  //slows down the animation
+				} catch(Exception ex) 
+				{
+					
+				}
+		}
+		
+	}
+
+}
