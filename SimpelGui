@@ -1,0 +1,43 @@
+/**
+ * Angus MacDonald 15009351
+ * Tutor: Karen MacKay
+ * Music Player (Head First Java)
+ * Version 1 09/11/18
+ */
+
+package musicplayer;
+
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class SimpleGui implements ActionListener {
+	JFrame frame;
+	JButton button;
+	
+	public void display() {
+
+		frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //This line makes the program quit as soon as the window frame is closed.
+		
+		button = new JButton("Click me!");
+		button.addActionListener(this); // Adds the button to the list of listeners
+		
+		MyDrawPanel drawPanel = new MyDrawPanel();
+		
+
+		frame.getContentPane().add(BorderLayout.SOUTH, button);  //This adds the button to the frame's content pane.
+		frame.getContentPane().add(BorderLayout.CENTER, drawPanel);
+		frame.setSize(300,300);//Gives the window pane a size
+		frame.setVisible(true);//This makes it visible.
+		
+		
+	} 
+
+
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		frame.repaint();
+	}
+
+}
