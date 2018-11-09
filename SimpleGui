@@ -2,7 +2,7 @@
  * Angus MacDonald 15009351
  * Tutor: Karen MacKay
  * Music Player (Head First Java)
- * Version 1 09/11/18
+ * Version 2 09/11/18
  */
 
 package musicplayer;
@@ -11,33 +11,59 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-public class SimpleGui implements ActionListener {
+public class SimpleGui {
 	JFrame frame;
-	JButton button;
+	JLabel label;
+
 	
 	public void display() {
 
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //This line makes the program quit as soon as the window frame is closed.
 		
-		button = new JButton("Click me!");  //creates the button widget
-		button.addActionListener(this); // Adds the button to the list of listeners
+		JButton labelButton = new JButton("Change Label!");  //creates the label button widget
+		labelButton.addActionListener(new LabelListener()); // Passes a new instance of the appropriate listener class
+		
+		JButton colourButton = new JButton("Change colour!");  //creates the colour button widget
+		colourButton.addActionListener(new ColourListener()); // Passes a new instance of the appropriate listener class
+		
+		label = new JLabel("I'm a label");
 		
 		MyDrawPanel drawPanel = new MyDrawPanel();  //Calls in the MyDrawPanel class
 		
 
-		frame.getContentPane().add(BorderLayout.SOUTH, button);  //This adds the button widget to the frame's content pane.
+		frame.getContentPane().add(BorderLayout.SOUTH, colourButton);  //This adds the button widget to the frame's content pane.
 		frame.getContentPane().add(BorderLayout.CENTER, drawPanel); //This adds the oval to the frame
+		frame.getContentPane().add(BorderLayout.EAST, labelButton);  //This adds the label button to the frame
+		frame.getContentPane().add(BorderLayout.WEST, label);  //This sets the label
 		frame.setSize(300,300);//Gives the window pane a size
 		frame.setVisible(true);//This makes it visible.
 		
 		
-	} 
-
-
-	public void actionPerformed(ActionEvent event) 
-	{
-		frame.repaint();  //Repaints the oval every time the button widget is clicked.
 	}
+	
+	/**
+	 * Using inner classes, we can have two action listeners in a single class, as below.
+	 * @author 15009351
+	 *
+	 */
+	
+	class LabelListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			label.setText("Ouch!");  //Changes label
+		}
+	}
+	
+	
+	class ColourListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			frame.repaint();  //Repaints the oval every time the button widget is clicked.
+		}
+	}
+	
 
 }
