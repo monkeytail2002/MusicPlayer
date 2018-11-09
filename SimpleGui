@@ -20,14 +20,14 @@ public class SimpleGui implements ActionListener {
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //This line makes the program quit as soon as the window frame is closed.
 		
-		button = new JButton("Click me!");
+		button = new JButton("Click me!");  //creates the button widget
 		button.addActionListener(this); // Adds the button to the list of listeners
 		
-		MyDrawPanel drawPanel = new MyDrawPanel();
+		MyDrawPanel drawPanel = new MyDrawPanel();  //Calls in the MyDrawPanel class
 		
 
-		frame.getContentPane().add(BorderLayout.SOUTH, button);  //This adds the button to the frame's content pane.
-		frame.getContentPane().add(BorderLayout.CENTER, drawPanel);
+		frame.getContentPane().add(BorderLayout.SOUTH, button);  //This adds the button widget to the frame's content pane.
+		frame.getContentPane().add(BorderLayout.CENTER, drawPanel); //This adds the oval to the frame
 		frame.setSize(300,300);//Gives the window pane a size
 		frame.setVisible(true);//This makes it visible.
 		
@@ -35,9 +35,9 @@ public class SimpleGui implements ActionListener {
 	} 
 
 
-	public void actionPerformed(ActionEvent arg0) 
+	public void actionPerformed(ActionEvent event) 
 	{
-		frame.repaint();
+		frame.repaint();  //Repaints the oval every time the button widget is clicked.
 	}
 
 }
