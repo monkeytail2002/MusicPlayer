@@ -1,0 +1,50 @@
+/**
+ * Angus MacDonald 15009351
+ * Tutor: Karen MacKay
+ * Music Sequence (Head First Java)
+ * Version 1 09/11/18
+ */
+
+package musicplayer;
+
+import javax.sound.midi.*;
+
+
+public class MusicSequence {
+	
+
+	public void play()
+	{
+		try {
+			/**
+			 * this section gets the sequencer and opens it.
+			 */
+			Sequencer player = MidiSystem.getSequencer();
+			player.open();
+			
+			Sequence seq = new Sequence(Sequence.PPQ, 4);			
+			Track track = seq.createTrack(); //Asks the sequence for a track.
+			
+			/**
+			 * Puts some MidiEvents into the track.
+			 */
+			ShortMessage a = new ShortMessage();
+			a.setMessage(144,1,44,100); //argument 144 = note on, using channel 1, play note 44, 199 = how fast and hard the note plays
+			MidiEvent noteOn = new MidiEvent(a,1);//Trigger note a on beat 1
+			track.add(noteOn);
+			
+			ShortMessage b = new ShortMessage();
+			b.setMessage(128,1,44,100); //argument 128 = note off, using channel 1, stop note 44, 199 = how fast and hard the note plays
+			MidiEvent noteOff = new MidiEvent(b, 16);//Trigger note b on beat 16
+			track.add(noteOff);
+			
+			
+			player.setSequence(seq);  //Gives the sequence to the sequencer
+			
+			player.start();//Starts the sequencer
+			
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+}
