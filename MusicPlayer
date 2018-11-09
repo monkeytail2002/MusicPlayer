@@ -13,8 +13,8 @@ public class MusicPlayer {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MusicSequence mt = new MusicSequence();
-		mt.play();
+		SimpleGui gui = new SimpleGui();
+		gui.display();
 
 	}
 	
